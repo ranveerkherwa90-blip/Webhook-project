@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
         });
         req.on('end', () => {
              console.log('Received data:', body);
-             res.end('EVENT_RECEIVED');
+  const data = JSON.parse(body);           res.end('EVENT_RECEIVED');
         });
     } else {
         res.end('Webhook received');
