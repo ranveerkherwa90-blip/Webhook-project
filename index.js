@@ -1,1 +1,13 @@
-const http = require('http'); const url = require('url'); const server = http.createServer((req, res) => { const queryObject = url.parse(req.url, true).query; if (req.method === 'GET' && queryObject['hub.verify_token'] === 'My_webhook_token') { res.end(queryObject['hub.challenge']); } else { console.log('Webhook received!'); res.end('Webhook received!'); } }); server.listen(process.env.PORT || 3000);
+const http = require('http');
+const url = require('url');
+const server = http.createServer((req, res) => {
+const queryObject = url.parse(req.url, true).query;
+if (req.method === 'GET' && queryObject['hub.verify_token'] === 'My_webhook_token') {
+res.end(queryObject['hub.challenge']);
+} else {
+res.end('Webhook received!');
+}
+});
+server.listen(process.env.PORT || 3000, () => {
+console.log('Server is running');
+});
